@@ -33,12 +33,9 @@ function operate(operator, a, b) {
   };
 }
 
-// Display
+// DISPLAY
 
-// DEBUG TIME!!
-
-var a;
-var b;
+var displayValue;
 var operator;
 
 // select all number buttons
@@ -46,15 +43,37 @@ var container = document.querySelector(".container");
 var numbers = document.querySelectorAll(".number");
 var display = document.querySelector(".display")
 // function
-var display = function (e) {
+var renderNum = function (e) {
   var num = e.target.getAttribute('id');
-  if (!a) {
-    a = num;
+  if (display.textContent === "NUMBERS") {
+    display.textContent = "";
   }
-  if (!b) {
-    b = num;
-  }
-display.textContent = display.textContent + " " + num;
+  display.textContent = display.textContent + " " + num;
+  displayValue = display.textContent;
 }
 // set to buttons
-numbers.addEventListener("click", display);
+numbers.forEach(button => 
+  button.addEventListener("click", renderNum)
+);
+
+// CALCULATE
+
+var calculate = function (string) {
+  var displayArr = string.split(' ');
+  while (displayArr.some( element => {
+	if (element === "*" || element === "/") {
+	  return true;
+	}
+  })) {
+	var index = displayArr.findIndex(element => {
+		if (element === "*" || element === "/") {
+	  return true;	
+		}
+})
+	var result = operate(displayArr[index], displayArr[index - 1], displayArr[index + 1]);
+	console.log("Result: ", result);
+	displayArr.splice(index - 1, 3, result);
+	console.log(displayArr);
+  }
+}
+calculate("1 - 2 * 3")
