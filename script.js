@@ -33,7 +33,7 @@ function operate(operator, a, b) {
   };
 }
 
-// DISPLAY
+// BUTTON DISPLAY
 
 var displayValue;
 var operator;
@@ -62,6 +62,23 @@ Number.prototype.countDecimals = function () {
   if(Math.floor(this.valueOf()) === this.valueOf()) return 0;
   return this.toString().split(".")[1].length || 0; 
 }
+
+// OPERATOR DISPLAY
+
+var operators = document.querySelectorAll(".operator");
+
+var renderOpp = function (e) {
+  var opp = e.target.textContent;
+  if (display.textContent === "NUMBERS") {
+    return;
+  }
+  display.textContent = display.textContent + " " + opp;
+  displayValue = display.textContent;
+}
+
+operators.forEach(button => 
+  button.addEventListener("click", renderOpp)
+);
 
 // CALCULATE
 
