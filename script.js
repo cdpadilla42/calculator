@@ -56,6 +56,13 @@ numbers.forEach(button =>
   button.addEventListener("click", renderNum)
 );
 
+// Count Decimals
+
+Number.prototype.countDecimals = function () {
+  if(Math.floor(this.valueOf()) === this.valueOf()) return 0;
+  return this.toString().split(".")[1].length || 0; 
+}
+
 // CALCULATE
 
 var calculate = function (string) {
@@ -81,7 +88,12 @@ var calculate = function (string) {
 var simpleResult = operate(displayArr[1], displayArr[0], displayArr[2]);
 displayArr.splice(0, 3, simpleResult);
 }
-return displayArr[0];
+
+var finalAnswer = displayArr[0];
+if(finalAnswer.countDecimals() > 4) {
+  finalAnswer = finalAnswer.toFixed(3) + "...";
+}
+return finalAnswer;
 
 }
 
