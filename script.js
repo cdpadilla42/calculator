@@ -70,7 +70,12 @@ var calculate = function (string) {
 
   if (divideByZero(displayArr)) {
     return "NICE TRY!"
-  }
+  };
+
+  if (syntaxOk(!displayArr)) {
+    return "Syntax Error!"
+  };
+
 
   while(
     displayArr.some( element => {
@@ -118,6 +123,16 @@ function divideByZero(arr) {
     }
   }
   return false;
+}
+
+function syntaxOk(arr) {
+	var last = arr[arr.length - 1];
+	if (last === "+" || last === "-" || 
+			last === "/" || last === "*") {
+		return false;
+	} else {
+		return true;
+	}
 }
 
 
