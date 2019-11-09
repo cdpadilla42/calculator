@@ -67,6 +67,11 @@ Number.prototype.countDecimals = function () {
 
 var calculate = function (string) {
   var displayArr = string.split(' ');
+
+  if (divideByZero(displayArr)) {
+    return "NICE TRY!"
+  }
+
   while(
     displayArr.some( element => {
 	    if (element === "*" || element === "/") {
@@ -95,6 +100,24 @@ if(finalAnswer.countDecimals() > 4) {
 }
 return finalAnswer;
 
+}
+
+function divideByZero(arr) {
+  // returns true if / is followed by 0 in the array.
+  var dividePresent = arr.some( element => {
+    if (element === "/") {
+      return true;
+    }
+  });
+  if (!dividePresent) {
+    return false;
+  }
+  for (var i = 0; i< arr.length; i++) {
+    if (arr[i] === "/" && parseInt(arr[i + 1]) === 0) {
+      return true;
+    }
+  }
+  return false;
 }
 
 
