@@ -1,19 +1,19 @@
 // Operations
 
 function add (a, b) {
-	return a + b;
+	return parseInt(a) + parseInt(b);
 };
 
 function subtract (a, b) {
-  return a - b;
+  return parseInt(a) - parseInt(b);
 };
 
 function multiply (a, b) {
-  return a * b;
+  return parseInt(a) * parseInt(b);
 };
 
 function divide (a, b) {
-  return a / b;
+  return parseInt(a) / parseInt(b);
 };
 
 // Operate
@@ -60,20 +60,30 @@ numbers.forEach(button =>
 
 var calculate = function (string) {
   var displayArr = string.split(' ');
-  while (displayArr.some( element => {
-	if (element === "*" || element === "/") {
-	  return true;
-	}
-  })) {
+  while(
+    displayArr.some( element => {
+	    if (element === "*" || element === "/") {
+	      return true;
+	    }
+    })
+  ) {
 	var index = displayArr.findIndex(element => {
 		if (element === "*" || element === "/") {
 	  return true;	
 		}
 })
 	var result = operate(displayArr[index], displayArr[index - 1], displayArr[index + 1]);
-	console.log("Result: ", result);
 	displayArr.splice(index - 1, 3, result);
-	console.log(displayArr);
   }
+
+	while(displayArr.length > 1) {
+
+var simpleResult = operate(displayArr[1], displayArr[0], displayArr[2]);
+displayArr.splice(0, 3, simpleResult);
 }
+return displayArr[0];
+
+}
+
+
 calculate("1 - 2 * 3")
