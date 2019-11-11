@@ -1,5 +1,13 @@
 // To-Do:
-// 
+// Next: Add functionality to the clear button, be sure to clear the array as well.
+//Pressing “clear” should wipe out any existing data.. make sure the user is really starting fresh after pressing “clear”
+
+/*
+EXTRA CREDIT: Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though: 12.3.56.5. It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
+EXTRA CREDIT: Make it look nice! This can be a good portfolio project… but not if it’s UGLY. At least make the operations a different color from the keypad buttons.
+EXTRA CREDIT: Add a “backspace” button, so the user can undo if they click the wrong number.
+EXTRA CREDIT: Add keyboard support!
+*/
 
 // Operations
 
@@ -48,8 +56,7 @@ var display = document.querySelector(".display")
 // function
 var renderNum = function (e) {
   var num = e.target.getAttribute('id');
-  if (display.textContent === "NUMBERS") {
-    display.textContent = "";
+  if (display.textContent === "NUMBERS" || display.textContent === "") {
     display.textContent = num;
   } else {
   display.textContent = display.textContent + " " + num;
@@ -167,3 +174,14 @@ function renderAnswer(){
 
 var equalsButton = document.querySelector("#equal");
 equalsButton.addEventListener("click", renderAnswer);
+
+// CLEAR INPUTS
+
+var clearButton = document.querySelector("#AC");
+
+function clearDisplay() {
+  display.textContent = "";
+
+}
+
+clearButton.addEventListener("click", clearDisplay);
