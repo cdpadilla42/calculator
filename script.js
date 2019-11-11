@@ -1,3 +1,6 @@
+// To-Do:
+// 
+
 // Operations
 
 function add (a, b) {
@@ -35,7 +38,7 @@ function operate(operator, a, b) {
 
 // BUTTON DISPLAY
 
-var displayValue;
+var displayValue = "NUMBERS";
 var operator;
 
 // select all number buttons
@@ -47,9 +50,11 @@ var renderNum = function (e) {
   var num = e.target.getAttribute('id');
   if (display.textContent === "NUMBERS") {
     display.textContent = "";
-  }
+    display.textContent = num;
+  } else {
   display.textContent = display.textContent + " " + num;
   displayValue = display.textContent;
+  }
 }
 // set to buttons
 numbers.forEach(button => 
@@ -83,13 +88,13 @@ operators.forEach(button =>
 // CALCULATE
 
 var calculate = function (string) {
-  var displayArr = string.split(' ');
+  var displayArr = string.split(" ");
 
   if (divideByZero(displayArr)) {
     return "NICE TRY!"
   };
 
-  if (syntaxOk(!displayArr)) {
+  if (!syntaxOk(displayArr)) {
     return "Syntax Error!"
   };
 
@@ -152,5 +157,13 @@ function syntaxOk(arr) {
 	}
 }
 
+function renderAnswer(){
+  // displays answer on the calc
+  var answer = calculate(displayValue);
+  display.textContent = answer;
+  return;
+}
 
-calculate("1 - 2 * 3")
+
+var equalsButton = document.querySelector("#equal");
+equalsButton.addEventListener("click", renderAnswer);
