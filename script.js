@@ -13,19 +13,19 @@ EXTRA EXTRA CREDIT: Refactor your code to store date in arrays as opposed to the
 // Operations
 
 function add (a, b) {
-	return parseInt(a) + parseInt(b);
+	return Number(a) + Number(b);
 };
 
 function subtract (a, b) {
-  return parseInt(a) - parseInt(b);
+  return Number(a) - Number(b);
 };
 
 function multiply (a, b) {
-  return parseInt(a) * parseInt(b);
+  return Number(a) * Number(b);
 };
 
 function divide (a, b) {
-  return parseInt(a) / parseInt(b);
+  return Number(a) / Number(b);
 };
 
 // Operate
@@ -59,6 +59,8 @@ var renderNum = function (e) {
   var num = e.target.getAttribute('id');
   if (display.textContent === "NUMBERS" || display.textContent === "") {
     display.textContent = num;
+  } else if (display.textContent[display.textContent.length - 1] === ".") {
+  display.textContent = display.textContent + num;
   } else {
     display.textContent = display.textContent + " " + num;
   }
