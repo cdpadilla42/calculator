@@ -1,12 +1,13 @@
 // To-Do:
-// Next: Add functionality to the clear button, be sure to clear the array as well.
-//Pressing “clear” should wipe out any existing data.. make sure the user is really starting fresh after pressing “clear”
+// Next: Add functionality to decimal
+// EXTRA CREDIT: Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though: 12.3.56.5. It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
+
 
 /*
-EXTRA CREDIT: Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though: 12.3.56.5. It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
 EXTRA CREDIT: Make it look nice! This can be a good portfolio project… but not if it’s UGLY. At least make the operations a different color from the keypad buttons.
 EXTRA CREDIT: Add a “backspace” button, so the user can undo if they click the wrong number.
 EXTRA CREDIT: Add keyboard support!
+EXTRA EXTRA CREDIT: Refactor your code to store date in arrays as opposed to the DOM
 */
 
 // Operations
@@ -59,9 +60,9 @@ var renderNum = function (e) {
   if (display.textContent === "NUMBERS" || display.textContent === "") {
     display.textContent = num;
   } else {
-  display.textContent = display.textContent + " " + num;
-  displayValue = display.textContent;
+    display.textContent = display.textContent + " " + num;
   }
+  displayValue = display.textContent;
 }
 // set to buttons
 numbers.forEach(button => 
@@ -185,3 +186,23 @@ function clearDisplay() {
 }
 
 clearButton.addEventListener("click", clearDisplay);
+
+// Decimal point
+var decimalButton = document.querySelector("#dot");
+
+function addDecimal() {
+  // adds decimal to a number
+  // detects if deciaml has already been added to a number and does not run if so
+  console.log("Get the POINT!")
+  var displayArray = displayValue.split(" ");
+  var currentNum = displayArray[displayArray.length - 1];
+  var hasDecimal = currentNum.indexOf(".");
+  if (hasDecimal === -1) {
+    displayValue = displayValue + "."
+  }
+  
+  display.textContent = displayValue;
+
+}; 
+
+decimalButton.addEventListener("click", addDecimal);
