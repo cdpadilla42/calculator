@@ -1,5 +1,5 @@
 // To-Do:
-// Next: Add functionality to decimal
+// Next: DEBUG Number additions
 // EXTRA CREDIT: Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though: 12.3.56.5. It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
 
 
@@ -55,12 +55,18 @@ var container = document.querySelector(".container");
 var numbers = document.querySelectorAll(".number");
 var display = document.querySelector(".display")
 // function
+
+// DEBUG ME!! The decimals won't add a space, but the nunmbers always add a space!!
 var renderNum = function (e) {
   var num = e.target.getAttribute('id');
+  var lastVal = display.textContent[display.textContent.length - 1];
+  var lastValIsNum = Number(lastVal);
+  var re = /[0-9]/
+  var isNum = re.test(lastVal);
   if (display.textContent === "NUMBERS" || display.textContent === "") {
     display.textContent = num;
-  } else if (display.textContent[display.textContent.length - 1] === ".") {
-  display.textContent = display.textContent + num;
+  } else if (lastVal === "." || isNum) {
+    display.textContent = display.textContent + num;
   } else {
     display.textContent = display.textContent + " " + num;
   }
