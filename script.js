@@ -1,12 +1,10 @@
 // To-Do:
 // Next: 
-// EXTRA CREDIT: Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though: 12.3.56.5. It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
-
+// EXTRA CREDIT: Add keyboard support!
 
 /*
 EXTRA CREDIT: Make it look nice! This can be a good portfolio project… but not if it’s UGLY. At least make the operations a different color from the keypad buttons.
 EXTRA CREDIT: Add a “backspace” button, so the user can undo if they click the wrong number.
-EXTRA CREDIT: Add keyboard support!
 EXTRA EXTRA CREDIT: Refactor your code to store date in arrays as opposed to the DOM
 */
 
@@ -62,7 +60,13 @@ function testIsNum(string) {
 }
 
 var renderNum = function (e) {
-  var num = e.target.getAttribute('id');
+  var num;
+  
+  if (!testIsNum(e)){
+    num = e.target.getAttribute('id');
+  } else {
+    num = e;
+  }
   var lastVal = display.textContent[display.textContent.length - 1];
   var isNum = testIsNum(lastVal);
   if (display.textContent === "NUMBERS" || display.textContent === "") {
@@ -223,3 +227,14 @@ function addDecimal() {
 }; 
 
 decimalButton.addEventListener("click", addDecimal);
+
+// KEYBOARD SUPPORT
+
+function logKey(e) {
+  var pressed = e.key;
+  var isNum = testIsNum(pressed);
+  if (isNum) {
+    renderNum(pressed);
+  }
+}
+document.addEventListener("keypress", logKey);
