@@ -1,5 +1,5 @@
 // To-Do:
-// Next: DEBUG Number additions
+// Next: 
 // EXTRA CREDIT: Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though: 12.3.56.5. It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
 
 
@@ -56,13 +56,15 @@ var numbers = document.querySelectorAll(".number");
 var display = document.querySelector(".display")
 // function
 
-// DEBUG ME!! The decimals won't add a space, but the nunmbers always add a space!!
+function testIsNum(string) {
+  var re = /[0-9]/
+  return re.test(string);
+}
+
 var renderNum = function (e) {
   var num = e.target.getAttribute('id');
   var lastVal = display.textContent[display.textContent.length - 1];
-  var lastValIsNum = Number(lastVal);
-  var re = /[0-9]/
-  var isNum = re.test(lastVal);
+  var isNum = testIsNum(lastVal);
   if (display.textContent === "NUMBERS" || display.textContent === "") {
     display.textContent = num;
   } else if (lastVal === "." || isNum) {
@@ -177,6 +179,7 @@ function renderAnswer(){
   // displays answer on the calc
   var answer = calculate(displayValue);
   display.textContent = answer;
+  displayValue = answer;
   return;
 }
 
@@ -206,7 +209,13 @@ function addDecimal() {
   var currentNum = displayArray[displayArray.length - 1];
   var hasDecimal = currentNum.indexOf(".");
   if (hasDecimal === -1) {
+    var lastVal = display.textContent[display.textContent.length - 1];
+    var isNum = testIsNum(lastVal);
+    if (isNum) {
     displayValue = displayValue + "."
+    } else {
+      displayValue = displayValue + " 0."
+    }
   }
   
   display.textContent = displayValue;
