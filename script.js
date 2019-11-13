@@ -1,10 +1,9 @@
 // To-Do:
-// Next: 
-// EXTRA CREDIT: Add keyboard support!
+// Next: EXTRA CREDIT: Add a “backspace” button, so the user can undo if they click the wrong number.
+//
 
 /*
 EXTRA CREDIT: Make it look nice! This can be a good portfolio project… but not if it’s UGLY. At least make the operations a different color from the keypad buttons.
-EXTRA CREDIT: Add a “backspace” button, so the user can undo if they click the wrong number.
 EXTRA EXTRA CREDIT: Refactor your code to store date in arrays as opposed to the DOM
 */
 
@@ -90,6 +89,18 @@ numbers.forEach(button =>
 Number.prototype.countDecimals = function () {
   if(Math.floor(this.valueOf()) === this.valueOf()) return 0;
   return this.toString().split(".")[1].length || 0; 
+}
+
+// BACKSPACE
+
+var backspace = function () {
+  if (displayNeedsClearing()) {
+    return;
+  }
+  var lastVal = display.textContent[display.textContent.length -1]
+  if (isOperator(lastVal) // or is a decimal or is a number) {
+    // delete the last value
+  }
 }
 
 // OPERATOR DISPLAY
