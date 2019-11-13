@@ -1,5 +1,5 @@
 // To-Do:
-// Next: 
+// Next: BUG - decimal adds space after number??? Decimal still doesn't always function off answer 
 // EXTRA CREDIT: Add keyboard support!
 
 /*
@@ -95,7 +95,13 @@ Number.prototype.countDecimals = function () {
 var operators = document.querySelectorAll(".operator");
 
 var renderOpp = function (e) {
-  var opp = e.target.textContent;
+
+  var opp;
+  if (isOperator(e)) {
+    opp = e;
+  } else {
+    var opp = e.target.textContent;
+  }
   if (display.textContent === "NUMBERS") {
     return;
   }
@@ -183,7 +189,7 @@ function renderAnswer(){
   // displays answer on the calc
   var answer = calculate(displayValue);
   display.textContent = answer;
-  displayValue = answer;
+  displayValue = "" + answer;
   return;
 }
 
@@ -197,7 +203,7 @@ var clearButton = document.querySelector("#AC");
 
 function clearDisplay() {
   display.textContent = "";
-
+  displayValue = "";
 }
 
 clearButton.addEventListener("click", clearDisplay);
@@ -209,7 +215,13 @@ function addDecimal() {
   // adds decimal to a number
   // detects if deciaml has already been added to a number and does not run if so
   console.log("Get the POINT!")
-  var displayArray = displayValue.split(" ");
+  var displayArray;
+  if (typeof displayValue === "string") {
+    displayArray = displayValue.split(" ");
+  }
+  if (typeof displayValue === "number") {
+    displayArray = [displayValue];
+  }
   var currentNum = displayArray[displayArray.length - 1];
   var hasDecimal = currentNum.indexOf(".");
   if (hasDecimal === -1) {
@@ -230,11 +242,31 @@ decimalButton.addEventListener("click", addDecimal);
 
 // KEYBOARD SUPPORT
 
+// NEXT: Add support to operators
+
 function logKey(e) {
   var pressed = e.key;
   var isNum = testIsNum(pressed);
+  if (pressed === ".") {
+    addDecimal();
+  }
   if (isNum) {
     renderNum(pressed);
   }
+  if (isOperator(pressed)) {
+    renderOpp(pressed);
+  }
+  if (pressed === "=") {
+    renderAnswer();
+  }
+  if (pressed ==="c") {
+    clearDisplay();
+  }
+  // Add decimal
 }
 document.addEventListener("keypress", logKey);
+
+function isOperator (string) {
+  var reOp = /[-+/*]/
+  return reOp.test(string);
+}
