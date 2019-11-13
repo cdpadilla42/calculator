@@ -1,5 +1,5 @@
 // To-Do:
-// Next: BUG - decimal adds space after number??? Decimal still doesn't always function off answer 
+// Next: 
 // EXTRA CREDIT: Add keyboard support!
 
 /*
@@ -69,7 +69,9 @@ var renderNum = function (e) {
   }
   var lastVal = display.textContent[display.textContent.length - 1];
   var isNum = testIsNum(lastVal);
-  if (display.textContent === "NUMBERS" || display.textContent === "") {
+  if (display.textContent === "NUMBERS" || 
+      display.textContent === "" || display.textContent === "NICE TRY!" || 
+      display.textContent === "Syntax Error!") {
     display.textContent = num;
   } else if (lastVal === "." || isNum) {
     display.textContent = display.textContent + num;
@@ -102,7 +104,9 @@ var renderOpp = function (e) {
   } else {
     var opp = e.target.textContent;
   }
-  if (display.textContent === "NUMBERS") {
+  if (display.textContent === "NUMBERS" || 
+      display.textContent === "" || display.textContent === "NICE TRY!" || 
+      display.textContent === "Syntax Error!") {
     return;
   }
   display.textContent = display.textContent + " " + opp;
@@ -229,7 +233,10 @@ function addDecimal() {
     var isNum = testIsNum(lastVal);
     if (isNum) {
     displayValue = displayValue + "."
+    } else if(displayNeedsClearing()) {
+      displayValue = "0."
     } else {
+      // if this is the first value at the start of a calc, no space
       displayValue = displayValue + " 0."
     }
   }
@@ -256,17 +263,25 @@ function logKey(e) {
   if (isOperator(pressed)) {
     renderOpp(pressed);
   }
-  if (pressed === "=") {
+  if (pressed === "Enter" || pressed === "=") {
     renderAnswer();
   }
   if (pressed ==="c") {
     clearDisplay();
   }
-  // Add decimal
+
 }
 document.addEventListener("keypress", logKey);
 
 function isOperator (string) {
   var reOp = /[-+/*]/
   return reOp.test(string);
+}
+
+function displayNeedsClearing() {
+  if (display.textContent === "NUMBERS" || 
+      display.textContent === "" || display.textContent === "NICE TRY!" || 
+      display.textContent === "Syntax Error!") {
+        return true;
+  }
 }
