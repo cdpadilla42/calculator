@@ -98,10 +98,21 @@ var backspace = function () {
     return;
   }
   var lastVal = display.textContent[display.textContent.length -1]
-  if (isOperator(lastVal) // or is a decimal or is a number) {
-    // delete the last value
+  if (isOperator(lastVal) || lastVal === "." || testIsNum(lastVal)) {
+    var stringLength = display.textContent.length;
+    var secondLastVal = display.textContent[stringLength - 2];
+    if (secondLastVal === " ") {
+      display.textContent = display.textContent.slice(0, stringLength - 2);
+    } else {
+      display.textContent = display.textContent.slice(0, stringLength - 1);
+    }
+    displayValue = display.textContent;
   }
 }
+
+var backButton = document.querySelector("#backspace");
+
+backButton.addEventListener("click", backspace);
 
 // OPERATOR DISPLAY
 
@@ -260,7 +271,6 @@ decimalButton.addEventListener("click", addDecimal);
 
 // KEYBOARD SUPPORT
 
-// NEXT: Add support to operators
 
 function logKey(e) {
   var pressed = e.key;
@@ -280,9 +290,12 @@ function logKey(e) {
   if (pressed ==="c") {
     clearDisplay();
   }
+  if (pressed === "Backspace") {
+    backspace();
+  }
 
 }
-document.addEventListener("keypress", logKey);
+document.addEventListener("keydown", logKey);
 
 function isOperator (string) {
   var reOp = /[-+/*]/
