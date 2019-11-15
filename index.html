@@ -1,8 +1,14 @@
 <!DOCTYPE html> 
   <html>
+    <head>
+      <title>Calculator</title>
+      <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
     <body>
+      <div class="calculator-container">
+        <div class="title">CALCULATOR</div>
         <div class="display">NUMBERS</div>
-      <div class="container">
+        <div class="key-container">
 
          
           <div class="a"><button id="open">(</button></div>
@@ -26,19 +32,8 @@
           <div class="s"><button id="equal">=</button></div>
           <div class="t"><button class="operator" id="plus">+</button></div>
         
+        </div>
       </div>
-
-      <style>
-      .container {
-        display: grid;
-        grid-template: repeat(5, 20px) / repeat(4, 20px);
-
-
-
-      }
-
-
-      </style>
-      <script src="script.js"></script>
+    <script src="script.js"></script>
     </body>
   </html>
