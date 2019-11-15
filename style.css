@@ -1,26 +1,60 @@
+/* Containers and Body */
+
+body {
+  background-color: #121619;
+  color: #fff;
+}
+
+
 .key-container {
   width: 100%;
   height: 100%;
   display: grid;
   grid-template: repeat(5, 1fr) / repeat(4, 1fr);
-
-
-
 }
 
 .calculator-container {
   display: grid;
-  grid-template-rows: 1fr 1fr 3fr;
+  grid-template-rows: 1fr 1fr 4fr;
   width: 247px;
   height: 482px;
-  background-color: grey;
   /* margin: 0 auto; */
+  background-color: #212327;
 }
 
-.key-container button {
+.display {
+  box-sizing: border-box;
+  width: 95%;
+  height: 20px;
+  text-align: right;
+  border-bottom: 1px solid black;
+  display: block;
+  margin: auto 5px;
+}
+
+/* Buttons */
+
+.s {
+  /* grid-row-start: 3;
+  grid-row-end: 5; */
+}
+
+#equal {
+ 
+}
+
+button {
   width: 50px;
   height: 50px;
-  color: red;
+  color: #fff;
   display: block;
   margin: 0 auto;
+  background-color: #212327;
+  border: 0 solid black;
+}
+
+.operator, #AC, #backspace, #close, #open {
+  background-color: #303236;
+  border: 3px solid #212327;
+  /* fix me */
 }
