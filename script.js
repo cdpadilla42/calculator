@@ -176,7 +176,7 @@ displayArr.splice(0, 3, simpleResult);
 
 var finalAnswer = displayArr[0];
 if(finalAnswer.countDecimals() > 4) {
-  finalAnswer = finalAnswer.toFixed(3) + "...";
+  finalAnswer = finalAnswer.toFixed(3);
 }
 return finalAnswer;
 
