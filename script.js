@@ -60,6 +60,10 @@ function testIsNum(string) {
 var renderNum = function (e) {
   var num;
   
+  if (displayLengthMax()) {
+    return;
+  }
+
   if (!testIsNum(e)){
     num = e.target.getAttribute('id');
   } else {
@@ -118,8 +122,12 @@ backButton.addEventListener("click", backspace);
 var operators = document.querySelectorAll(".operator");
 
 var renderOpp = function (e) {
-
   var opp;
+
+  if (displayLengthMax()) {
+    return;
+  }
+
   if (isOperator(e)) {
     opp = e;
   } else {
@@ -273,12 +281,14 @@ decimalButton.addEventListener("click", addDecimal);
 
 function logKey(e) {
   var pressed = e.key;
+  var keyCode = e.keyCode;
   var isNum = testIsNum(pressed);
   if (pressed === ".") {
     addDecimal();
   }
   if (isNum) {
     renderNum(pressed);
+    addPressedStyle(pressed, keyCode);
   }
   if (isOperator(pressed)) {
     renderOpp(pressed);
@@ -307,4 +317,26 @@ function displayNeedsClearing() {
       display.textContent === "Syntax Error!") {
         return true;
   }
+}
+
+function displayLengthMax() {
+  if (display.textContent.length > 13) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function addPressedStyle(pressed, keyCode) {
+  // takes in pressed key
+  // selects button that was pressed on calculator
+  var selector = "#" + pressed;
+  var key = document.querySelector(`button[data-key="${keyCode}"]`);
+  console.log(key);
+  // adds css styling to button
+  key.classList.add("pressed");
+  // delay
+  // removes styling
+
+  // watch https://www.youtube.com/watch?v=VuN8qwZoego
 }

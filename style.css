@@ -87,7 +87,7 @@ button {
   font-size: 15px;
 }
 
-button:hover {
+button:hover, .pressed {
   background-color: #51539c;
 }
 
@@ -97,6 +97,13 @@ button:hover {
 
 }
 
-.operator:hover, #AC:hover, #backspace:hover, #close:hover, #open:hover {
+.operator:hover, #AC:hover, #backspace:hover, #close:hover, #open:hover, {
   background-color: #6db8a8;
+}
+
+/* Keyboard Controls */
+
+.table td, .table th  {
+  padding: 8px;
+  /* visibility: hidden; */
 }
