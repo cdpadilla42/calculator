@@ -227,7 +227,7 @@ function renderAnswer(){
 }
 
 
-var equalsButton = document.querySelector("#equal");
+var equalsButton = document.querySelector("#Equal");
 equalsButton.addEventListener("click", renderAnswer);
 
 // CLEAR INPUTS
@@ -285,6 +285,7 @@ function logKey(e) {
   var isNum = testIsNum(pressed);
   if (pressed === ".") {
     addDecimal();
+    addPressedStyle(pressed, keyCode);
   }
   if (isNum) {
     renderNum(pressed);
@@ -292,15 +293,19 @@ function logKey(e) {
   }
   if (isOperator(pressed)) {
     renderOpp(pressed);
+    addPressedStyle(pressed, keyCode);
   }
   if (pressed === "Enter" || pressed === "=") {
     renderAnswer();
+    addPressedStyle(pressed, keyCode);
   }
   if (pressed ==="c") {
     clearDisplay();
+    addPressedStyle(pressed, keyCode);
   }
   if (pressed === "Backspace") {
     backspace();
+    addPressedStyle(pressed, keyCode);
   }
 
 }
@@ -332,7 +337,17 @@ function addPressedStyle(pressed, keyCode) {
   // selects button that was pressed on calculator
   var selector = "#" + pressed;
   var key = document.querySelector(`button[data-key="${keyCode}"]`);
-  console.log(key);
+  
+  // handles the 8 key
+  if (keyCode === 56 && pressed === "*") {
+    key = document.querySelector("#times");
+  }
+
+  // // handles enter
+  // if (selector === "#Enter") {
+  //   key = document.querySelector(selector);
+  // }
+
   // adds css styling to button
   key.classList.add("pressed");
   // delay
@@ -348,7 +363,6 @@ function addPressedStyle(pressed, keyCode) {
 
 var removeTransition = function (e) {
   // removes pressed class from buttons
-  console.log(e.target)
   // select current button
   e.target.classList.remove("pressed");
 };
