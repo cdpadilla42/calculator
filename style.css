@@ -87,7 +87,7 @@ button {
   font-size: 15px;
 }
 
-button:hover, .pressed {
+button:hover, .number.pressed {
   background-color: #51539c;
 }
 
@@ -97,7 +97,7 @@ button:hover, .pressed {
 
 }
 
-.operator:hover, #AC:hover, #backspace:hover, #close:hover, #open:hover, {
+.operator:hover, #AC:hover, #backspace:hover, .operator.pressed, #AC.pressed, #backspace.pressed {
   background-color: #6db8a8;
 }
 

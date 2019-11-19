@@ -337,6 +337,18 @@ function addPressedStyle(pressed, keyCode) {
   key.classList.add("pressed");
   // delay
   // removes styling
+  var buttons = document.querySelectorAll("button");
+  buttons.forEach(button => button.addEventListener("transitionend", removeTransition));
+
+  // key.classList.remove("pressed");
 
   // watch https://www.youtube.com/watch?v=VuN8qwZoego
 }
+
+
+var removeTransition = function (e) {
+  // removes pressed class from buttons
+  console.log(e.target)
+  // select current button
+  e.target.classList.remove("pressed");
+};
