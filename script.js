@@ -307,6 +307,10 @@ function logKey(e) {
     backspace();
     addPressedStyle(pressed, keyCode);
   }
+  if (pressed === "k") {
+    toggleVisibility();
+    addPressedStyle(pressed, keyCode);
+  }
 
 }
 document.addEventListener("keydown", logKey);
@@ -343,21 +347,14 @@ function addPressedStyle(pressed, keyCode) {
     key = document.querySelector("#times");
   }
 
-  // // handles enter
-  // if (selector === "#Enter") {
-  //   key = document.querySelector(selector);
-  // }
+ 
 
   // adds css styling to button
   key.classList.add("pressed");
-  // delay
-  // removes styling
   var buttons = document.querySelectorAll("button");
   buttons.forEach(button => button.addEventListener("transitionend", removeTransition));
 
-  // key.classList.remove("pressed");
-
-  // watch https://www.youtube.com/watch?v=VuN8qwZoego
+ 
 }
 
 
@@ -365,4 +362,12 @@ var removeTransition = function (e) {
   // removes pressed class from buttons
   // select current button
   e.target.classList.remove("pressed");
+};
+
+// Toggle Table Visibility
+
+var keyControls = document.querySelector(".table");
+
+function toggleVisibility() {
+  keyControls.classList.toggle("hide");
 };

@@ -105,5 +105,9 @@ button:hover, .number.pressed {
 
 .table td, .table th  {
   padding: 8px;
-  /* visibility: hidden; */
+  
+}
+
+.table.hide {
+  visibility: hidden;
 }
