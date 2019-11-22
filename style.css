@@ -35,7 +35,7 @@ h1 {
   grid-template-rows: 1fr 1fr 4fr;
   width: 247px;
   height: 482px;
-  /* margin: 0 auto; */
+  margin: 0 auto;
   background-color: #212327;
   padding: 20px;
   border-radius: 20px;
@@ -105,7 +105,10 @@ button:hover, .number.pressed {
 
 .table td, .table th  {
   padding: 8px;
-  
+}
+
+table {
+  margin: 0 auto;
 }
 
 .table.hide {
