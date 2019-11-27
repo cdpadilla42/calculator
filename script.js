@@ -7,6 +7,7 @@ EXTRA EXTRA CREDIT: Refactor your code to store date in arrays as opposed to the
 */
 
 // Operations
+var keyControls = document.querySelector(".table");
 
 function add (a, b) {
 	return Number(a) + Number(b);
@@ -69,6 +70,18 @@ var renderNum = function (e) {
   } else {
     num = e;
   }
+  
+  if (num === "key") {
+    // FIX THE INSTREUCITON TOGGLEABILITY
+    toggleVisibility();
+    return;
+  }
+
+  if (num === "dot") {
+    addDecimal();
+    return;
+  }
+
   var lastVal = display.textContent[display.textContent.length - 1];
   var isNum = testIsNum(lastVal);
   if (display.textContent === "NUMBERS" || 
@@ -366,7 +379,7 @@ var removeTransition = function (e) {
 
 // Toggle Table Visibility
 
-var keyControls = document.querySelector(".table");
+
 
 function toggleVisibility() {
   keyControls.classList.toggle("hide");
